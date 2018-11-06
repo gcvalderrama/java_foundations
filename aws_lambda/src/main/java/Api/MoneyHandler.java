@@ -1,5 +1,6 @@
 package Api;
 
+import Services.CustomerService;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestStreamHandler;
@@ -31,5 +32,7 @@ public class MoneyHandler implements RequestStreamHandler {
         response.headers.put("test_header", "test");
         String ser = gson.toJson(response);
         IOUtils.write(ser, outputStream, "UTF-8");
+
+        CustomerService service = new CustomerService();
     }
 }
