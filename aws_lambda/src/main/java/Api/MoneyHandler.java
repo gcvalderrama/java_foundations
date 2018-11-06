@@ -24,8 +24,9 @@ public class MoneyHandler implements RequestStreamHandler {
         }
         GsonBuilder builder = new GsonBuilder();
         Gson gson = builder.create();
+        MoneyRequest req = gson.fromJson(result, MoneyRequest.class);
         MoneyResponse response = new MoneyResponse();
-        response.body = result;
+        response.body = gson.toJson(req);
         response.headers.put("test_header", "test");
         String ser = gson.toJson(response);
         IOUtils.write(ser, outputStream, "UTF-8");
